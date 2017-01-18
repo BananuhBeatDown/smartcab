@@ -29,7 +29,7 @@ class LearningAgent(Agent):
         # Select the destination as the new location to route to
         self.planner.route_to(destination)
         if testing==False:
-            self.epsilon -= 0.02
+            self.epsilon -= 0.005
         else:
             self.epsilon = 0
             self.alpha = 0
@@ -49,7 +49,7 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)  # Remaining deadline
         
         # Set 'state' as a tuple of relevant data for the agent        
-        state = (waypoint,  inputs['light'], inputs['oncoming'])
+        state = (waypoint,  inputs['light'], inputs['oncoming'], inputs['left'])
 
         return state
 
@@ -57,7 +57,7 @@ class LearningAgent(Agent):
     def get_maxQ(self, state):
         """ The get_max_Q function is called when the agent is asked to find the
             maximum Q-value of all actions based on the 'state' the smartcab is in. """
-
+        
         maxQ = max(self.Q[state], key=self.Q[state].get)
         return maxQ 
 
@@ -82,6 +82,7 @@ class LearningAgent(Agent):
             if self.epsilon > random.random():
                 action = random.choice(self.valid_actions)
             else:
+                # if two states have a max value the function will choose one
                 action = self.get_maxQ(state)
         else:
             action = random.choice(self.valid_actions)
