@@ -58,8 +58,7 @@ class LearningAgent(Agent):
         """ The get_max_Q function is called when the agent is asked to find the
             maximum Q-value of all actions based on the 'state' the smartcab is in. """
         
-        maxQ = max(self.Q[state], key=self.Q[state].get)
-        return maxQ 
+        return max(self.Q[state].values())
 
 
     def createQ(self, state):
@@ -74,16 +73,19 @@ class LearningAgent(Agent):
     def choose_action(self, state):
         """ The choose_action function is called when the agent is asked to choose
             which action to take, based on the 'state' the smartcab is in. """
-
-        # Set the agent state and default action
+        
+        maxQ_options = []
+        # Set the agent state and default actionS
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
         if self.learning==True:
             if self.epsilon > random.random():
                 action = random.choice(self.valid_actions)
             else:
-                # if two states have a max value the function will choose one
-                action = self.get_maxQ(state)
+                for k in self.Q[state].keys():
+                    if self.Q[state][k] == self.get_maxQ(state):
+                        maxQ_options.append(k)
+                action = random.choice(maxQ_options) 
         else:
             action = random.choice(self.valid_actions)
         return action
