@@ -4,7 +4,7 @@ In short, it incrementally teach a smartcab how to drive through a simulated cit
 
 ### Install
 - Python 2.7
-    + I recommend installing [Anaconda](https://www.continuum.io/downloads) as it is alreay set up for machine learning
+    + I recommend installing [Anaconda](https://www.continuum.io/downloads) as it is already set up for machine learning
     + If unfamiliar with the command line there are graphical installs for macOS, Windows, and Linux
 - [pygame library](https://www.pygame.org/wiki/GettingStarted)
     + `pip install pygame`
@@ -36,8 +36,8 @@ By using the options found in the `agent.py`, `environment.py`, and `simulator.p
 - `n_test` - set number of testing trials
 
 ### Example output
-The `visuals.py` file can create performances graphs from the `.csv` files `/log` folder to you help understand the performance of your smartcab during the test simulations, and give you an overall saftey and reliability rating.  
-**Saftey and reliability chart can also be found in the [smartcab.ipynb](https://github.com/BananuhBeatDown/smartcab/blob/master/smartcab.ipynb).*
+The `visuals.py` file can create performances graphs from the `.csv` files `/log` folder to you help understand the performance of your smartcab during the test simulations, and give you an overall safety and reliability rating.  
+**Safety and reliability chart can also be found in the [smartcab.ipynb](https://github.com/BananuhBeatDown/smartcab/blob/master/smartcab.ipynb).*
 ```python
 # import the visualization code
 import visuals as vs
